@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
                 response: Response<List<CryptoModel>>
             ) {
                 if (response.isSuccessful) {
-                    response.body()?.let { it ->
-                        cryptoModels = ArrayList(it)
+                    response.body()?.let {
+                        it
                         recyclerAdapter = RecycleAdapter(it)
                         recycle.adapter = recyclerAdapter
 

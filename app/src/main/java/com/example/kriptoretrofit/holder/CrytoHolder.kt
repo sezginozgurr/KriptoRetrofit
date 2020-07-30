@@ -20,7 +20,7 @@ class CrytoHolder(container: ViewGroup) : RecyclerView.ViewHolder(
     val txtPrice: TextView = itemView.findViewById(R.id.txt_price)
 
     fun bind(cryptomodel: CryptoModel) {
-        txtTitle.text = cryptomodel.currently
+        txtTitle.text = cryptomodel.currency
         txtPrice.text = cryptomodel.price
     }
 }
