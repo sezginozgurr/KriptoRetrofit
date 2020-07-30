@@ -3,8 +3,10 @@ package com.example.kriptoretrofit.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kriptoretrofit.R
+import com.example.kriptoretrofit.adapter.RecycleAdapter
 import com.example.kriptoretrofit.model.CryptoModel
 import com.example.kriptoretrofit.service.CryptoAPI
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
     private val BASE_URL = "https://api.nomics.com/v1/"
     private var cryptoModels: ArrayList<CryptoModel>? = null
+    private var recyclerAdapter: RecycleAdapter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,10 +50,9 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         cryptoModels = ArrayList(it)
+                        recyclerAdapter = RecycleAdapter(it)
+                        recycle.adapter = recyclerAdapter
 
-                        cryptoModels?.let {
-
-                        }
                     }
                 }
             }
