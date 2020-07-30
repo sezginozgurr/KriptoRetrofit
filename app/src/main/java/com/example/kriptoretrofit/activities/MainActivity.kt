@@ -1,7 +1,8 @@
-package com.example.kriptoretrofit
+package com.example.kriptoretrofit.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kriptoretrofit.R
 import com.example.kriptoretrofit.model.CryptoModel
 import com.example.kriptoretrofit.service.CryptoAPI
 import retrofit2.Call
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         Network()
     }
 
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         val call = service.getData()
 
         call.enqueue(object : Callback<List<CryptoModel>> {
+
             override fun onFailure(call: Call<List<CryptoModel>>, t: Throwable) {
                 TODO("Not yet implemented")
             }
@@ -42,12 +45,11 @@ class MainActivity : AppCompatActivity() {
                 response: Response<List<CryptoModel>>
             ) {
                 if (response.isSuccessful) {
-                    response.body()?.let {
+                    response.body()?.let { it ->
                         cryptoModels = ArrayList(it)
 
-                        for (crytoModel: CryptoModel in cryptoModels!!) {
-                            println(crytoModel.currently)
-                            println(crytoModel.price)
+                        cryptoModels?.let {
+
                         }
                     }
                 }
